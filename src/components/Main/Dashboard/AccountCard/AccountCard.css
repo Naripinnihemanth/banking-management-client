@@ -1,0 +1,50 @@
+.account-card {
+  min-width: 300px;
+  height: clamp(150px, 20vw, 200px);
+  border-radius: 10px;
+  background: var(--glass-effect-2);
+  backdrop-filter: blur(var(--glass-blur));
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-grow: 1;
+}
+.account-number {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: var(--p);
+  font-weight: bold;
+}
+.account-status-active {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(10, 187, 10, 0.514);
+  text-align: center;
+  padding: 4px 20px;
+  font-size: 0.8rem;
+  border-radius: 10px;
+}
+.account-balance-container {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  gap: 20px;
+}
+.account-balance {
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+.balance-show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.balance-show-icon {
+  font-size: 1.3rem;
+}

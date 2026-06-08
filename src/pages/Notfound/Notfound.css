@@ -1,0 +1,16 @@
+.page-404 {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.page-404 img {
+  width: 300px;
+}
+.page-404 h1 {
+    font-family: var(--h1);
+  font-weight: bolder;
+}

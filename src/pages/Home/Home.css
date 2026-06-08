@@ -1,0 +1,14 @@
+.home {
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  display: grid;
+  grid-template-columns: clamp(200px, 25vw, 250px) 2fr 1fr;
+  grid-template-rows: 80px 1fr;
+  gap: 20px;
+  grid-template-areas:
+    "sidebar header header"
+    "sidebar main rightSider";
+  background: var(--bg-image);
+  color: var(--bg);
+}

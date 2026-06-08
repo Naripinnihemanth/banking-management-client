@@ -1,0 +1,46 @@
+.loading {
+  width: 100vw;
+  max-height: 100vh;
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.295);
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: var(--bg);
+}
+.bank-icon {
+  position: absolute;
+  animation: blink 1s linear infinite;
+}
+.circle {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  border-top: 5px solid;
+  border-radius: 50%;
+  animation: rotate 2s linear infinite;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}

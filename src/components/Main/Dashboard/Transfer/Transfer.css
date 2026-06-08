@@ -1,0 +1,43 @@
+.transfer {
+  margin: auto;
+  inset: 0;
+  width: 400px;
+  height: 500px;
+  border: none;
+  background: var(--glass-effect);
+  backdrop-filter: blur(var(--glass-blur));
+  color: var(--bg);
+  border-radius: 10px;
+  box-shadow: 0px 0px 3px var(--bg);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 20;
+}
+.transfer:popover-open {
+  display: flex;
+}
+.stage {
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: start;
+  gap: 10px;
+  overflow: hidden;
+}
+.stage6 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: start;
+  gap: 10px;
+  overflow: hidden;
+}

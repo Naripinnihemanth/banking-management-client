@@ -1,0 +1,121 @@
+.Payment-processing {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Payment-processing p,
+.payment-success p,
+.payment-failed p {
+  position: relative;
+  font-family: var(--h1);
+  font-size: 1.4rem;
+  color: var(--seconder-text);
+  animation: loading 2s linear infinite;
+}
+@keyframes loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.payment-success {
+  width: 100%;
+  height: 100%;
+  border: 1px solid;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.payment-failed {
+  width: 100%;
+  height: 100%;
+  border: 1px solid;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wallet {
+  width: 150px;
+}
+.sender-wallet {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+}
+.receiver-wallet {
+  position: absolute;
+  top: 40%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  transition: all 1s;
+}
+.money {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  animation: transfer 1s linear infinite;
+}
+@keyframes transfer {
+  0% {
+    left: 40%;
+  }
+  100% {
+    left: 70%;
+  }
+}
+
+.success {
+  position: absolute;
+  background: rgb(22, 182, 22);
+  height: 150px;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  animation: success 1s ease-in-out;
+}
+.failed {
+  position: absolute;
+  background: rgb(214, 34, 34);
+  height: 150px;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  animation: success 1s ease-in-out;
+}
+.payment-success .hide,
+.payment-failed .hide {
+  display: none;
+}
+.payment-success p {
+  font-size: 1.6rem;
+  color: rgb(22, 182, 22);
+}
+.payment-failed p {
+  font-size: 1.6rem;
+  color: rgb(214, 34, 34);
+}
+@keyframes success {
+  0% {
+    opacity: 0;
+    top: 40%;
+    left: 70%;
+  }
+  100% {
+    top: 30%;
+    left: 50%;
+    opacity: 1;
+  }
+}

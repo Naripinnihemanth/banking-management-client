@@ -1,0 +1,22 @@
+.message {
+  position: fixed;
+  color: white;
+  padding: 6px 30px;
+  border-radius: 10px;
+  top: 40px;
+  z-index: 100;
+  background: rgba(20, 179, 20, 0.568);
+  backdrop-filter: blur(var(--glass-blur));
+  animation: message 0.4s ease-in-out;
+}
+.danger {
+  background: rgba(255, 53, 2, 0.568);
+}
+@keyframes message {
+  0% {
+    top: -30px;
+  }
+  100% {
+    top: 40px;
+  }
+}

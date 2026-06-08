@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@600&family=Hind+Madurai:wght@300&family=Montserrat:wght@700&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+:root {
+  --bg: #e6e6e6;
+  --secondery-text: #6096ba;
+  --primary-text: #274c77;
+  --secondery-btn: #8b8c89;
+  --glass-effect-2: rgba(239, 249, 240, 0.06);
+  --glass-effect: rgba(239, 249, 240, 0.06);
+  --glass-blur: 8px;
+  --shadow: rgba(139, 140, 137, 0.5);
+  --h1: "Montserrat";
+  --h2: "Assistant";
+  --p: "Hind Madurai";
+  --bg-image: url("./login_bg.mp4");
+}
+body {
+  font-family: var(--p);
+}
+a {
+  color: var(--bg);
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+button {
+  border: none;
+  outline: none;
+}
