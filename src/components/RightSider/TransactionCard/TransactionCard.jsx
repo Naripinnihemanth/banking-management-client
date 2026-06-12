@@ -1,32 +1,39 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./TransactionCard.css";
 import { FiArrowDownLeft } from "react-icons/fi";
 import { FiArrowUpRight } from "react-icons/fi";
 import { siderContext } from "../../../context/RightSiderContext";
+import { FcOk } from "react-icons/fc";
+import { MdSmsFailed } from "react-icons/md";
 import TransactionDetailsCard from "../../Main/Transactions/TransactionDetailsCard/TransactionDetailsCard";
 function TransactionCard({ data }) {
   const { setSider } = useContext(siderContext);
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  useEffect(() => {
+    if (data?.id) {
+      const dateAndTime = new Date(data.date);
+      setDate(dateAndTime.toDateString());
+      setTime(dateAndTime.toLocaleTimeString());
+    }
+  }, [data]);
   return (
     <div
       className="transaction-card"
-      onClick={() =>
-        setSider(<TransactionDetailsCard data={data}></TransactionDetailsCard>)
-      }
+      onClick={() => {
+        setSider(<TransactionDetailsCard data={data}></TransactionDetailsCard>);
+      }}
     >
       <div className="status">
         {data.status == "SUCCESS" ? (
-          <p className="tick">✔</p>
+          <FcOk className="tick" />
         ) : (
-          <p className="info">!</p>
+          <MdSmsFailed className="info" />
         )}
       </div>
       <div className="details">
         <h3>
-          {data.date.slice(0, data.date.indexOf("T"))} /{" "}
-          {data.date.slice(
-            data.date.indexOf("T") + 1,
-            data.date.indexOf("T") + 6,
-          )}{" "}
+          {date}/{time}
         </h3>
         <p>
           ------------

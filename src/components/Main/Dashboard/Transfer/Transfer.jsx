@@ -21,14 +21,6 @@ function Transfer() {
   const [receiverDetails, setReceiverDetails] = useState({});
   const [receiverAccountError, setReceiverAccountError] = useState({});
   const [loading, setLoading] = useState(false);
-  // accountNumber: "ACC1778146674457",
-  // balance: 0,
-  // email: "deepak4119@gmail.com",
-  // name: "Deepak Naripinni",
-  // role: "USER",
-  // status: "ACTIVE",
-  // type: "SEVINGS",
-  // userId: 3,
 
   async function getReceiverAccount() {
     if (receiver != "") {

@@ -11,4 +11,5 @@
     "sidebar main rightSider";
   background: var(--bg-image);
   color: var(--bg);
+  padding-right: 20px;
 }

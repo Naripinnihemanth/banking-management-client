@@ -4,7 +4,7 @@
   width: 400px;
   height: 500px;
   border: none;
-  background: var(--glass-effect);
+  background: rgba(128, 128, 128, 0.555);
   backdrop-filter: blur(var(--glass-blur));
   color: var(--bg);
   border-radius: 10px;

@@ -14,7 +14,7 @@ import { jwtDecode } from "jwt-decode";
 import { TOKEN } from "../../constents";
 import api from "../../api";
 import publicApi from "../../publicApi";
-import userContext from "../../context/UserContext";
+import { userContext } from "../../context/UserContext";
 import { navContext } from "../../context/NavContext";
 function SideBar() {
   const navigations = [
@@ -45,8 +45,17 @@ function SideBar() {
   ];
   const [active, setActive] = useState(1);
   const navigate = useNavigate();
-  const user = useContext(userContext);
-  const { setElement } = useContext(navContext);
+  const { user } = useContext(userContext);
+  const { element, setElement } = useContext(navContext);
+
+  useEffect(() => {
+    navigations.map((item) => {
+      if (item.page == element) {
+        setActive(item.id);
+      }
+    });
+  }, [element]);
+
   return (
     <div className="sidebar">
       <h1>Trustora</h1>
@@ -57,7 +66,7 @@ function SideBar() {
           width={"100px"}
           className="profile-pic"
         />
-        <p>{user.name}</p>
+        <p>{user?.name}</p>
       </div>
       <ul className="navigations">
         {navigations.map((item) => (

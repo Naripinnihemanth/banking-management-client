@@ -1,0 +1,25 @@
+.search-item-card {
+  width: 100%;
+  height: 50px;
+  border: 1px solid;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 10px;
+  position: relative;
+}
+.search-item-card h4 {
+  font-family: var(--h2);
+}
+.search-item-card p {
+  font-family: var(--p);
+  font-size: 0.8rem;
+}
+.search-item-card svg {
+  position: absolute;
+  color: var(--primary-text);
+  right: 20px;
+  font-size: 1.5rem;
+}

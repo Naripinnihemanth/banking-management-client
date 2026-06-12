@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0px 6%;
+  position: relative;
 }
 .header-title {
   font-family: var(--h2);
@@ -21,6 +22,7 @@
   height: 35px;
 }
 .search-bar {
+  position: relative;
   width: 80%;
   height: 100%;
   display: flex;
@@ -38,8 +40,9 @@
   border: none;
   background: none;
   outline: none;
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   padding: 10px;
+  color: var(--bg);
 }
 .search-bar input::placeholder {
   font-size: 0.8rem;
@@ -52,4 +55,31 @@
 }
 .notification-icon {
   font-size: 2rem;
+}
+.header .search-accounts {
+  position: absolute;
+  width: 100%;
+  max-height: 70vh;
+  z-index: 200;
+  top: calc(100% + 10px);
+  right: 0px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  background: var(--bg);
+  color: var(--primary-text);
+  overflow: auto;
+}
+.header .search-accounts::-webkit-scrollbar {
+  display: none;
+}
+.header .search-accounts .items-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 10px;
 }

@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./PaymentStatus.css";
 import { Link } from "react-router-dom";
+import { navContext } from "../../../../../context/NavContext";
+import Transactions from "../../../Transactions/Transactions";
 function PaymentSuccess() {
   const [add, setAdd] = useState(false);
+  const { setElement } = useContext(navContext);
   useEffect(() => {
     const timer = setTimeout(() => {
       setAdd(true);
@@ -29,11 +32,13 @@ function PaymentSuccess() {
         alt=""
         width={"100px"}
       />
-      {add ? (
-        <>
-          <p>Success</p>
-        </>
-      ) : null}
+      {add ? <p>Success</p> : null}
+      <button
+        className="done"
+        onClick={() => setElement(<Transactions></Transactions>)}
+      >
+        Done
+      </button>
     </div>
   );
 }

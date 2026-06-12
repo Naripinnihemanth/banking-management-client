@@ -3,7 +3,14 @@
   height: 100%;
   grid-area: main;
   padding: 0px 8%;
-  overflow: hidden;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.main::-webkit-scrollbar {
+  display: none;
 }
 .dashboard {
   width: 100%;
@@ -25,6 +32,9 @@
   overflow: scroll;
 }
 .accounts::-webkit-scrollbar {
+  display: none;
+}
+.dashboard .accounts .account-card .menu {
   display: none;
 }
 .dashboard-actions {

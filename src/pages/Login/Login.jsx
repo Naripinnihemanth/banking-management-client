@@ -7,7 +7,7 @@ import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import Loading from "../../components/Loading/Loading";
 import Message from "../../components/Message/Message";
-function Login({ getUser }) {
+function Login() {
   const [message, setMessage] = useState({
     data: "",
     danger: false,
@@ -34,7 +34,6 @@ function Login({ getUser }) {
         setMessage((pre) => {
           return { ...pre, data: "login successfull !" };
         });
-        getUser();
         setLoading(false);
         navigate("/");
       }

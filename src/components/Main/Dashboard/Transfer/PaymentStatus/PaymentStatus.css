@@ -103,6 +103,13 @@
   font-size: 1.6rem;
   color: rgb(22, 182, 22);
 }
+.payment-success .done {
+  padding: 7.5px 30px;
+  position: absolute;
+  bottom: 40px;
+  background: var(--bg);
+  border-radius: 10px;
+}
 .payment-failed p {
   font-size: 1.6rem;
   color: rgb(214, 34, 34);

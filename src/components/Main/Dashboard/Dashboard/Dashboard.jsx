@@ -5,7 +5,7 @@ import { BiMoneyWithdraw } from "react-icons/bi";
 import { GrTransaction } from "react-icons/gr";
 import { MdOutlineAccountBalanceWallet } from "react-icons/md";
 import { GiReceiveMoney } from "react-icons/gi";
-import userContext from "../../../../context/UserContext";
+import { userContext } from "../../../../context/UserContext";
 import { accountContext } from "../../../../context/AccountContext";
 import { navContext } from "../../../../context/NavContext";
 import api from "../../../../api";
@@ -13,23 +13,21 @@ import CreateAccount from "../CreateAccount/CreateAccount";
 import Transfer from "../Transfer/Transfer";
 import { siderContext } from "../../../../context/RightSiderContext";
 import TransactionDetailsCard from "../../Transactions/TransactionDetailsCard/TransactionDetailsCard";
+import PayToMobile from "../PayToMobile/PayToMobile";
 function Dashboard() {
-  const getUser = useContext(userContext);
-  const [user, setUser] = useState({});
+  const { user, setUser } = useContext(userContext);
   const { setSider } = useContext(siderContext);
   const { accounts, setAccounts } = useContext(accountContext);
   const { element, setElement } = useContext(navContext);
-  const [acc, setAcc] = useState([]);
   const [accountTypes, setAccountTypes] = useState([]);
   async function getAccount() {
     try {
       const res = await api.post(`/account/get_account`, user);
       if (res.status === 200) {
-        setAcc(res.data);
-        setAccounts(res.data);
+        setAccounts(res.data.reverse());
       }
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data);
     } finally {
     }
   }
@@ -37,8 +35,6 @@ function Dashboard() {
     setElement(<CreateAccount></CreateAccount>);
   }
   useEffect(() => {
-    setUser(getUser);
-    console.log(accounts);
     setSider(null);
   }, []);
   useEffect(() => {
@@ -47,8 +43,8 @@ function Dashboard() {
     }
   }, [user]);
   useEffect(() => {
-    acc.map((item) => setAccountTypes((pre) => [...pre, item.type]));
-  }, [acc]);
+    accounts.map((item) => setAccountTypes((pre) => [...pre, item.type]));
+  }, [accounts]);
   return (
     <div className="dashboard">
       {accounts.length == 0 ? (
@@ -58,7 +54,7 @@ function Dashboard() {
         </div>
       ) : (
         <div className="accounts">
-          {acc.map((item) => (
+          {accounts.map((item) => (
             <AccountCard account={item} key={item.id}></AccountCard>
           ))}
         </div>
@@ -68,7 +64,10 @@ function Dashboard() {
           <RiMoneyRupeeCircleFill />
           <p>Transfer</p>
         </button>
-        <div className="action-icon">
+        <div
+          className="action-icon"
+          onClick={() => setSider(<PayToMobile></PayToMobile>)}
+        >
           <BiMoneyWithdraw />
           <p>Pay to mobile</p>
         </div>

@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./CreateAccount.css";
-import userContext from "../../../../context/UserContext";
+import { userContext } from "../../../../context/UserContext";
 import api from "../../../../api";
 import Message from "../../../Message/Message";
 import { navContext } from "../../../../context/NavContext";
 import { data } from "react-router-dom";
 function CreateAccount() {
-  const user = useContext(userContext);
+  const { user } = useContext(userContext);
   const { element, setElement } = useContext(navContext);
   const [accountType, setAccountType] = useState(null);
   const [termsAndConditions, setTermsAndConditions] = useState(false);
@@ -14,6 +14,22 @@ function CreateAccount() {
     data: "",
     danger: false,
   });
+
+  function handleError() {
+    setTimeout(() => {
+      setElement(null);
+    }, 2000);
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMessage({
+        data: "",
+        danger: false,
+      });
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [message]);
   async function createAccount() {
     try {
       if (termsAndConditions) {
@@ -30,7 +46,13 @@ function CreateAccount() {
         });
       }
     } catch (err) {
-      console.log(err);
+      if (err.response.status) {
+        setMessage({
+          data: err.response.data,
+          danger: true,
+        });
+        handleError();
+      }
     }
   }
   return (

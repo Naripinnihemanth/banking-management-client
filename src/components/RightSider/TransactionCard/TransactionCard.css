@@ -17,7 +17,7 @@
   align-items: center;
   justify-content: center;
   font-family: var(--h1);
-  font-size: 1.2rem;
+  font-size: 1.8rem;
 }
 .transaction-card .status .tick,
 .transaction-card .type .credited {
