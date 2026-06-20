@@ -41,3 +41,17 @@
   gap: 10px;
   overflow: hidden;
 }
+.transfer .cancel {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  padding: 10px 20px;
+  background: var(--bg);
+  border-radius: inherit;
+  font-family: var(--h2);
+  color: var(--primary-text);
+  z-index: 100;
+}
+.transfer .cancel:hover {
+  background: rgba(255, 0, 0, 0.514);
+}

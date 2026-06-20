@@ -1,0 +1,10 @@
+.upi-pay {
+  width: 100vw;
+  height: 100vh;
+  background: var(--primary-text);
+  color: var(--bg);
+  display: fle;
+}
+.upi-pay .pay-to-mobile {
+  height: 100%;
+}

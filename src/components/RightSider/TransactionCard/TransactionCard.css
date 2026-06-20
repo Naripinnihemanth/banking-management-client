@@ -8,6 +8,7 @@
   display: grid;
   grid-template-columns: 70px 1fr 70px;
   grid-template-rows: 1fr;
+  overflow: hidden;
 }
 .transaction-card .status {
   width: 100%;
@@ -63,7 +64,6 @@
   font-size: 1rem;
 }
 .transaction-card .details h3 {
-  font-size: 1.1rem;
   font-family: var(--h2);
   font-weight: bold;
 }

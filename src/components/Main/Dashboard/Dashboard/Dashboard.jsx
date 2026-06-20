@@ -14,12 +14,37 @@ import Transfer from "../Transfer/Transfer";
 import { siderContext } from "../../../../context/RightSiderContext";
 import TransactionDetailsCard from "../../Transactions/TransactionDetailsCard/TransactionDetailsCard";
 import PayToMobile from "../PayToMobile/PayToMobile";
+import { Link } from "react-router-dom";
+import Transactions from "../../../MobileComponents/Transactions/Transactions";
+import { popUpContext } from "../../../../context/PopUpContext";
 function Dashboard() {
   const { user, setUser } = useContext(userContext);
+  const { PopUp, setPopUp } = useContext(popUpContext);
+
   const { setSider } = useContext(siderContext);
   const { accounts, setAccounts } = useContext(accountContext);
   const { element, setElement } = useContext(navContext);
   const [accountTypes, setAccountTypes] = useState([]);
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   async function getAccount() {
     try {
       const res = await api.post(`/account/get_account`, user);
@@ -60,13 +85,27 @@ function Dashboard() {
         </div>
       )}
       <div className="dashboard-actions">
-        <button className="action-icon" popoverTarget="transfer">
-          <RiMoneyRupeeCircleFill />
-          <p>Transfer</p>
-        </button>
+        {windowSize.width <= 500 ? (
+          <button
+            className="action-icon"
+            onClick={() => setPopUp(<Transfer></Transfer>)}
+          >
+            <RiMoneyRupeeCircleFill />
+            <p>Transfer</p>
+          </button>
+        ) : (
+          <button className="action-icon" popoverTarget="transfer">
+            <RiMoneyRupeeCircleFill />
+            <p>Transfer</p>
+          </button>
+        )}
         <div
           className="action-icon"
-          onClick={() => setSider(<PayToMobile></PayToMobile>)}
+          onClick={
+            windowSize.width <= 500
+              ? () => setPopUp(<PayToMobile></PayToMobile>)
+              : () => setSider(<PayToMobile></PayToMobile>)
+          }
         >
           <BiMoneyWithdraw />
           <p>Pay to mobile</p>
@@ -83,8 +122,9 @@ function Dashboard() {
           <GiReceiveMoney />
           <p>Lone</p>
         </div>
-        <Transfer></Transfer>
+        {windowSize.width >= 1080 ? <Transfer></Transfer> : null}
       </div>
+      {windowSize.width <= 500 ? <Transactions></Transactions> : null}
     </div>
   );
 }

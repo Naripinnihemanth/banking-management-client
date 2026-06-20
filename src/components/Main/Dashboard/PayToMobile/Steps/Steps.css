@@ -1,0 +1,207 @@
+.step {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  padding: 10px;
+  gap: 10px;
+  border-radius: inherit;
+}
+.step1 h2 {
+  width: 100%;
+}
+.step1 input {
+  width: 90%;
+  height: 35px;
+  background: var(--glass-effect);
+  border: none;
+  outline: none;
+  color: var(--bg);
+  padding: 10px;
+  border-radius: 10px;
+}
+.step1 .search-items {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  padding: 10px;
+}
+.step2 .enter-amount {
+  width: 100%;
+  height: 90%;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.step2 input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100px;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--bg);
+  font-size: 3rem;
+  text-align: center;
+}
+
+.step2 input::placeholder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.322);
+}
+.step2 .footer {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+  gap: 10px;
+}
+.step2 .footer button {
+  height: 40px;
+  width: 100%;
+  border-radius: inherit;
+  background: var(--secondery-text);
+  color: var(--bg);
+  font-family: var(--h2);
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  cursor: pointer;
+}
+.step2 .footer .back {
+  width: 100px;
+  background: var(--bg);
+  color: var(--secondery-text);
+}
+.step2 .select-account {
+  width: 95%;
+  height: 60px;
+  background: var(--glass-effect);
+  backdrop-filter: blur(--glass-blur);
+  border-radius: inherit;
+  position: absolute;
+  bottom: 60px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  padding: 5px 0px;
+}
+.step2 .select-account .selected {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+  padding: 5px;
+}
+.step2 .select-account .selected .card {
+  width: 80%;
+  border: 1px solid;
+  padding: 0px 20px;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.step2 .select-account .selected .card h4 {
+  font-family: var(--h2);
+  font-size: 1.2rem;
+}
+.step2 .select-account .selected .card p {
+  font-size: 0.75rem;
+}
+.step2 .select-account .selected .up {
+  width: 20%;
+  height: 100%;
+  background: var(--glass-effect);
+  backdrop-filter: blur(var(--glass-blur));
+  box-shadow: 0px 0px 2px var(--bg);
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+  cursor: pointer;
+}
+.step2 .open {
+  height: 250px;
+  transition: all 1s ease;
+}
+.step2 .select-account .accounts {
+  width: 100%;
+  height: 100%;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: start;
+  border-radius: inherit;
+  padding: 0px 10px;
+}
+.step2 .select-account .accounts .step2-account-card {
+  width: 100%;
+  height: fit-content;
+  border: 1px solid;
+  border-radius: inherit;
+  padding: 5px 20px;
+  position: relative;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--glass-effect);
+  backdrop-filter: blur(var(--glass-blur));
+  box-shadow: 0px 0px 2px var(--bg);
+}
+.step2 .select-account .accounts .step2-account-card h4 {
+  font-family: var(--h2);
+  font-size: 1.2rem;
+}
+.step2 .select-account .accounts .step2-account-card p {
+  font-size: 0.8rem;
+}
+
+.step2 .select-account .accounts .step2-account-card .selected-item {
+  position: absolute;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+.step3 .otp-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: start;
+  gap: 20px;
+  padding: 100px 0px 0px 0px;
+}

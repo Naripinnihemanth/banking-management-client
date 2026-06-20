@@ -1,0 +1,13 @@
+.pop-up {
+  position: fixed;
+  z-index: 99999;
+  top: 0px;
+  left: 0px;
+  background: var(--secondery-text);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}

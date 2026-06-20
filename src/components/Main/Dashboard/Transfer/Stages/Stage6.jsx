@@ -6,14 +6,14 @@ import PaymentSuccess from "../PaymentStatus/PaymentSuccess";
 import PaymentFailed from "../PaymentStatus/PaymentFailed";
 import Loading from "../../../../Loading/Loading";
 import api from "../../../../../api";
-function Stage6({ stages, getSender, getReceiver, amount }) {
+function Stage6({ getSender, getReceiver, amount }) {
   const [isSuccess, setIsSuccess] = useState(null);
 
   async function transfer() {
     try {
       const res = await api.post("/account/transfer", {
         senderAccount: getSender,
-        receiverAccount: getReceiver.accountNumber,
+        receiverAccount: getReceiver?.accountNumber || getReceiver,
         amount: amount,
       });
       if (res.status === 200) {

@@ -6,10 +6,32 @@ import { siderContext } from "../../../context/RightSiderContext";
 import { FcOk } from "react-icons/fc";
 import { MdSmsFailed } from "react-icons/md";
 import TransactionDetailsCard from "../../Main/Transactions/TransactionDetailsCard/TransactionDetailsCard";
+import { popUpContext } from "../../../context/PopUpContext";
 function TransactionCard({ data }) {
+  const { PopUp, setPopUp } = useContext(popUpContext);
+
   const { setSider } = useContext(siderContext);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   useEffect(() => {
     if (data?.id) {
       const dateAndTime = new Date(data.date);
@@ -20,9 +42,19 @@ function TransactionCard({ data }) {
   return (
     <div
       className="transaction-card"
-      onClick={() => {
-        setSider(<TransactionDetailsCard data={data}></TransactionDetailsCard>);
-      }}
+      onClick={
+        windowSize.width <= 500
+          ? () => {
+              setPopUp(
+                <TransactionDetailsCard data={data}></TransactionDetailsCard>,
+              );
+            }
+          : () => {
+              setSider(
+                <TransactionDetailsCard data={data}></TransactionDetailsCard>,
+              );
+            }
+      }
     >
       <div className="status">
         {data.status == "SUCCESS" ? (

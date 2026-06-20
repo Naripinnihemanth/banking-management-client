@@ -4,13 +4,13 @@ import api from "../../../../../api";
 import emailjs from "@emailjs/browser";
 import Loading from "../../../../Loading/Loading";
 import "./Stages.css";
-
+import { messageContext } from "../../../../../context/MassageContext";
 function Stage5({ stages, senderData, otpData }) {
   const { sender, accounts } = senderData;
   const [account, setAccount] = useState({});
   const [userOtp, setUserOtp] = useState("");
   const [disabled, setDisabled] = useState(true);
-  const [massage, setMassage] = useState("");
+  const [massage, setMessage] = useState("");
   const [otp, setOtp] = useState(null);
   const [loading, setLoading] = useState(false);
   function filter() {
@@ -23,10 +23,16 @@ function Stage5({ stages, senderData, otpData }) {
   function verify() {
     if (userOtp == otpData.otp) {
       setDisabled(false);
-      setMassage("OTP verified !");
+      setMessage({
+        data: "OTP verified !",
+        danger: false,
+      });
     } else {
       setDisabled(true);
-      setMassage("invalide OTP !");
+      setMessage({
+        data: "invalide OTP !",
+        danger: true,
+      });
     }
   }
   async function getOtp() {
@@ -53,11 +59,17 @@ function Stage5({ stages, senderData, otpData }) {
           "ocrUYNN414NkaV6XY",
         );
         if (emailRes.status === 200) {
-          setMassage("otp send successful !!");
+          setMessage({
+            data: "otp send successful !!",
+            danger: false,
+          });
         }
       }
     } catch (err) {
-      console.log(err);
+      setMessage({
+        data: err.response.data,
+        danger: true,
+      });
     } finally {
       setLoading(false);
     }
@@ -75,24 +87,13 @@ function Stage5({ stages, senderData, otpData }) {
     filter();
     getOtp();
   }, []);
-  // useEffect(() => {
-  //   console.log(account);
-  // }, [account]);
   useEffect(() => {
     sendOtp().catch((err) => console.log(err));
   }, [otp]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setMassage("");
-    }, 3000);
-    return () => window.clearInterval(timer);
-  }, [massage]);
-
   return (
     <div className="stage">
       {loading ? <Loading></Loading> : null}
-      {massage != "" ? <div className="otp-status">{massage}</div> : null}
       <div className="stage5-note">
         <span>Note : </span>we'r sent a OTP to linked email address{" "}
         <span>{account?.user?.email}</span>

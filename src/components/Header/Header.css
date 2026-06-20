@@ -8,20 +8,20 @@
   padding: 0px 6%;
   position: relative;
 }
-.header-title {
+.header .header-title {
   font-family: var(--h2);
-  font-size: 2rem;
+  font-size: clamp(1rem, 4vw, 1.5rem);
   color: var(--bg);
 }
 
-.header-actions {
+.header .header-actions {
   width: 350px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   height: 35px;
 }
-.search-bar {
+.header .header-actions .search-bar {
   position: relative;
   width: 80%;
   height: 100%;
@@ -53,7 +53,7 @@
   font-size: 1.3rem;
   font-weight: bold;
 }
-.notification-icon {
+.header .header-actions .notification-icon {
   font-size: 2rem;
 }
 .header .search-accounts {
@@ -82,4 +82,31 @@
   align-items: start;
   justify-content: center;
   gap: 10px;
+}
+.header button {
+  background: none;
+  border: none;
+  color: var(--bg);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+@media screen and (max-width: 500px) {
+  .header {
+    height: 50px;
+    position: sticky;
+    background: var(--secondery-text);
+    padding: 10px 6%;
+    top: 0px;
+    z-index: 100;
+  }
+  .header .header-title {
+    display: none;
+  }
+  .header button {
+    display: flex;
+    cursor: pointer;
+  }
 }

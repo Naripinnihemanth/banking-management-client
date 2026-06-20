@@ -5,31 +5,19 @@ import api from "../../../../api";
 import Message from "../../../Message/Message";
 import { navContext } from "../../../../context/NavContext";
 import { data } from "react-router-dom";
+import { messageContext } from "../../../../context/MassageContext";
 function CreateAccount() {
   const { user } = useContext(userContext);
   const { element, setElement } = useContext(navContext);
   const [accountType, setAccountType] = useState(null);
   const [termsAndConditions, setTermsAndConditions] = useState(false);
-  const [message, setMessage] = useState({
-    data: "",
-    danger: false,
-  });
+  const { message, setMessage } = useContext(messageContext);
 
   function handleError() {
     setTimeout(() => {
       setElement(null);
     }, 2000);
   }
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setMessage({
-        data: "",
-        danger: false,
-      });
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, [message]);
   async function createAccount() {
     try {
       if (termsAndConditions) {
@@ -57,9 +45,6 @@ function CreateAccount() {
   }
   return (
     <div className="create-account-page">
-      {message.data != "" ? (
-        <Message message={message.data} status={message.danger}></Message>
-      ) : null}
       <select
         name="account_types"
         id=""

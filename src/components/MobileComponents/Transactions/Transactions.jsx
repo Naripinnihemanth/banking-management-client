@@ -1,21 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
+import { userContext } from "../../../context/UserContext";
 import "./Transactions.css";
 import api from "../../../api";
-import { userContext } from "../../../context/UserContext";
 import TransactionCard from "../../RightSider/TransactionCard/TransactionCard";
 import { siderContext } from "../../../context/RightSiderContext";
-import TransactionDetailsCard from "./TransactionDetailsCard/TransactionDetailsCard";
 function Transactions() {
   const { user } = useContext(userContext);
-  const { setSider } = useContext(siderContext);
+  const { sider } = useContext(siderContext);
   const [transactions, setTransactions] = useState([]);
-  const [active, setActive] = useState(0);
   async function getTransactions() {
     try {
       const res = await api.post("/account/get_transactions", user);
-      if (res.status === 200) {
-        setTransactions(res.data.reverse());
-      }
+      setTransactions(res.data.reverse());
     } catch (err) {
       console.log(err);
     }
@@ -23,18 +19,11 @@ function Transactions() {
   useEffect(() => {
     getTransactions();
   }, []);
-  useEffect(() => {
-    if (transactions.length != 0)
-      setSider(
-        <TransactionDetailsCard
-          data={transactions[0]}
-        ></TransactionDetailsCard>,
-      );
-  }, [transactions]);
+
   return (
-    <div className="transactions">
-      <h2>all transactions</h2>
-      <div className="transaction-container">
+    <div className=" mobile-transactions">
+      <h3 className="title">Recent activity </h3>
+      <div className="transactions">
         {transactions.length == 0 ? (
           <p
             style={{
@@ -44,7 +33,7 @@ function Transactions() {
               fontSize: "0.8rem",
             }}
           >
-            Make a transaction
+            No Activity found
           </p>
         ) : (
           transactions.map((item) => (

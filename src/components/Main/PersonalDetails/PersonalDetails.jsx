@@ -18,7 +18,6 @@ function PersonalDetails() {
 
   useEffect(() => {
     setSider(null);
-    console.log(accounts);
   }, []);
   return (
     <div className="personal-details">

@@ -7,10 +7,31 @@ import { MdOutlineDownloadForOffline } from "react-icons/md";
 import { IoMdHelpCircleOutline } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import { siderContext } from "../../../../context/RightSiderContext";
+import { popUpContext } from "../../../../context/PopUpContext";
 function TransactionDetailsCard({ data }) {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const { setSider } = useContext(siderContext);
+  const { PopUp, setPopUp } = useContext(popUpContext);
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     if (data?.id) {
@@ -20,34 +41,18 @@ function TransactionDetailsCard({ data }) {
     }
   }, [data]);
 
-  // const h = {
-  //   account: {
-  //     account_number: "ACC1780811360166",
-  //     balance: 250,
-  //     id: 2,
-  //     status: "ACTIVE",
-  //     type: "SEVINGS",
-  //     user: {
-  //       email: "hemanthnaripinni125@gmail.com",
-  //       id: 6,
-  //       mobile: "8985145540",
-  //       name: "Madhavi Naripinni",
-  //       password:
-  //         "$2a$10$0tSAZsZmuh.s5qYa6KrARuwu5tNViObwcQl9QTbHphDwAbQgfJNlu",
-  //       role: "USER",
-  //       username: "hemanthnaripinni125",
-  //     },
-  //   },
-  //   amount: 250,
-  //   date: "2026-06-08T07:11:29.743Z",
-  //   id: 10,
-  //   status: "SUCCESS",
-  //   type: "DEBITED",
-  // };
-
   return (
     <div className="transaction-details">
-      <IoClose className="close" onClick={() => setSider(null)} />
+      <IoClose
+        className="close"
+        onClick={
+          windowSize.width <= 500
+            ? () => {
+                setPopUp(null);
+              }
+            : () => setSider(null)
+        }
+      />
       <div className="status-container">
         {data?.status == "SUCCESS" ? (
           <div className="status">

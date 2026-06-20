@@ -3,8 +3,10 @@
   color: white;
   padding: 6px 30px;
   border-radius: 10px;
-  top: 40px;
-  z-index: 100;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99999999999999999999;
   background: rgba(20, 179, 20, 0.568);
   backdrop-filter: blur(var(--glass-blur));
   animation: message 0.4s ease-in-out;
@@ -17,6 +19,6 @@
     top: -30px;
   }
   100% {
-    top: 40px;
+    top: 10px;
   }
 }

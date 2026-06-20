@@ -50,10 +50,15 @@ function SideBar() {
 
   useEffect(() => {
     navigations.map((item) => {
-      if (item.page == element) {
-        setActive(item.id);
+      if (element != null) {
+        if (item.page?.type?.name === element?.type?.name) {
+          setActive(item.id);
+        }
+      } else {
+        setActive(0);
       }
     });
+    console.log(element);
   }, [element]);
 
   return (

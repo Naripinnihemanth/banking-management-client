@@ -5,7 +5,8 @@ import { userContext } from "../../context/UserContext";
 import { CiSearch } from "react-icons/ci";
 import { IoIosNotifications } from "react-icons/io";
 import SearchItemCard from "./SearchItemCard/SearchItemCard";
-function Header() {
+import { CgMenuLeftAlt } from "react-icons/cg";
+function Header({ sider }) {
   const { user } = useContext(userContext);
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
@@ -17,7 +18,6 @@ function Header() {
       if (res.status === 200) {
         setResult(res.data);
       }
-      console.log(res);
     } catch (err) {
       console.log(err?.response.data);
     } finally {
@@ -34,6 +34,9 @@ function Header() {
   return (
     <div className="header">
       <p className="header-title">HELLO, {user?.name}!</p>
+      <button onClick={() => sider((pre) => !pre)}>
+        <CgMenuLeftAlt />
+      </button>
       <div className="header-actions">
         <div className="search-bar">
           <CiSearch className="search-icon" />

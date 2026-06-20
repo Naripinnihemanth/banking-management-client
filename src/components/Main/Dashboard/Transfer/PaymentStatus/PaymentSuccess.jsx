@@ -3,9 +3,31 @@ import "./PaymentStatus.css";
 import { Link } from "react-router-dom";
 import { navContext } from "../../../../../context/NavContext";
 import Transactions from "../../../Transactions/Transactions";
+import { popUpContext } from "../../../../../context/PopUpContext";
 function PaymentSuccess() {
   const [add, setAdd] = useState(false);
   const { setElement } = useContext(navContext);
+  const { PopUp, setPopUp } = useContext(popUpContext);
+
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   useEffect(() => {
     const timer = setTimeout(() => {
       setAdd(true);
@@ -32,10 +54,14 @@ function PaymentSuccess() {
         alt=""
         width={"100px"}
       />
-      {add ? <p>Success</p> : null}
+      {add ? <p>Success</p> : <p className="pro">Processing</p>}
       <button
         className="done"
-        onClick={() => setElement(<Transactions></Transactions>)}
+        onClick={() =>
+          windowSize.width
+            ? setPopUp(null)
+            : setElement(<Transactions></Transactions>)
+        }
       >
         Done
       </button>
